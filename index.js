@@ -54,7 +54,7 @@ client.on('chat', function(c, user, message, self) {
   } else if (message.toLowerCase().indexOf('!extrasongrequest') == 0) {
     var str = message.replace('extra', '');
     chat(str);
-  } else if (message.toLowerCase().indexOf('!tour') == 0) {
+  } else if (message.toLowerCase().indexOf('!tour') == 0 || message.toLowerCase().indexOf('!mission') == 0) {
     if (mission == -1) chat('SleepingBear is on Tour ' + tour + '!');
     else chat ('SleepingBear is on Tour ' + tour + ' Mission ' + mission + '!');
   } else if (message.toLowerCase().indexOf('!setmission ') == 0 && isAdmin(user)) {
