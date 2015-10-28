@@ -51,7 +51,7 @@ client.on('chat', function(c, user, message, self) {
     console.log(match);
     var str = '';
     for (var m = 0; m < match.length; m++) {
-      str += '#' + match[m][1].replace(/(demipixel|demi)(bot)?)/gi, user.username) + ' ';
+      str += '#' + match[m][1].replace(/(demipixel|demi)(bot)?/gi, user.username) + ' ';
     }
     str = str.trim();
     chat(str);
