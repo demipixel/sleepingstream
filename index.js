@@ -46,11 +46,12 @@ client.on('chat', function(c, user, message, self) {
 
   if (message.toLowerCase().indexOf('!demibot') == 0) {
     chat('Hey @' + user.username + ' !');
-  } else if (message.match(/#([^ #]{0,15})(demipixel|demi)([^ #]{0,15})/i) && !me) {
-    var match = getMatches(/#([^ #]{0,15})(demipixel|demi)([^ #]{0,15})/gi, message)
+  } else if (message.match(/#[^ #]{0,15}(demipixel|demi)[^ #]{0,15}/i) && !me) {
+    var match = getMatches(/#([^ #]{0,15}(demipixel|demi)[^ #]{0,15})/gi, message)
+    console.log(match);
     var str = '';
     for (var m = 0; m < match.length; m++) {
-      str += '#' + match[m][1] + user.username + match[m][3] + ' ';
+      str += '#' + match[m][1].replace(/(demipixel|demi)(bot)?)/gi, user.username) + ' ';
     }
     str = str.trim();
     chat(str);
