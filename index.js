@@ -30,10 +30,20 @@ client.on('connected', function() {
   //chat('Global Announcement: @demipixel has mined the Rune Stone at 230,630! Type !demigame to join!');
 });
 
+var refreshList = [];
 client.on('chat', function(c, user, message, self) {
   if (self) return;
   if (!message) return;
   var me = user.username == 'demipixel';
+
+  refreshList.push(message.toLowerCase().indexOf('refresh') > -1 ? 1 : 0);
+  if (refreshList.length > 6) refreshList.splice(0, 1);
+
+  var totalRefreshComments = refreshList.reduce((p, c) => p + c);
+  if (totalRefreshComments >= 4) {
+    chat('**If the stream froze** PAUSE AND RESUME or CHANGE YOUR QUALITY SETTINGS')
+  }
+
   if (message.toLowerCase().indexOf('!demibot') == 0) {
     chat('Hey @' + user.username + ' !');
   } else if (message.match(/#([^ #]{0,15})(demipixel|demi)([^ #]{0,15})/i) && !me) {
