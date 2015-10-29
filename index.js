@@ -35,8 +35,9 @@ client.on('chat', function(c, user, message, self) {
   if (self) return;
   if (!message) return;
   var me = user.username == 'demipixel';
+  var lowermes = message.toLowerCase();
 
-  refreshList.push(message.toLowerCase().indexOf('refresh') > -1 ? 1 : 0);
+  refreshList.push(lowermes.indexOf('refresh') > -1 ? 1 : 0);
   if (refreshList.length > 6) refreshList.splice(0, 1);
 
   var totalRefreshComments = refreshList.reduce((p, c) => p + c);
@@ -44,32 +45,31 @@ client.on('chat', function(c, user, message, self) {
     chat('**If the stream froze** PAUSE AND RESUME or CHANGE YOUR QUALITY SETTINGS')
   }
 
-  if (message.toLowerCase().indexOf('!demibot') == 0) {
+  if (lowermes.indexOf('!demibot') == 0) {
     chat('Hey @' + user.username + ' !');
   } else if (message.match(/#[^ #]{0,15}(demipixel|demi)[^ #]{0,15}/i) && !me) {
     var match = getMatches(/#([^ #]{0,15}(demipixel|demi)[^ #]{0,15})/gi, message)
-    console.log(match);
     var str = '';
     for (var m = 0; m < match.length; m++) {
       str += '#' + match[m][1].replace(/(demipixel|demi)(bot)?/gi, user.username) + ' ';
     }
     str = str.trim();
     chat(str);
-  } else if (message.toLowerCase().indexOf('!joke') == 0) {
+  } else if (lowermes.indexOf('!joke') == 0) {
     request('http://api.yomomma.info/', function(err, body) {
       var joke = JSON.parse(body.body).joke.replace(/m(o|a)(m|mm)a/gi, 'boy Sleeping Bear').replace(/she/gi, 'he').replace(/her/gi, 'his');
       chat(joke);
     });
-  } else if (message.toLowerCase().match(/deez( )?nut(s|z)/) && !me) {
+  } else if (lowermes.match(/deez( )?nut(s|z)/) && !me) {
     chat('@' + user.username + ' needs to find funnier jokes.');
-  } else if (message.toLowerCase().indexOf('!extrasongrequest') == 0) {
+  } else if (lowermes.indexOf('!extrasongrequest') == 0) {
     var str = message.replace('extra', '');
     chat(str);
-  } else if (message.toLowerCase().indexOf('!tour') == 0 || message.toLowerCase().indexOf('!mission') == 0) {
+  } else if (lowermes.indexOf('!tour') == 0 || lowermes.indexOf('!mission') == 0) {
     if (mission == -1) chat('SleepingBear is on Tour ' + tour + '!');
     else chat ('SleepingBear is on Tour ' + tour + ' Mission ' + mission + '!');
-  } else if (message.toLowerCase().indexOf('!setmission ') == 0 && isAdmin(user)) {
-    var m = parseInt(message.toLowerCase().replace('!setmission ', ''));
+  } else if (lowermes.indexOf('!setmission ') == 0 && isAdmin(user)) {
+    var m = parseInt(lowermes.replace('!setmission ', ''));
     if (m || m == 0) {
       if (m > 4 || m < 1) {
         chat('Mission must be between 1 and 4');
@@ -78,6 +78,10 @@ client.on('chat', function(c, user, message, self) {
         chat('Seting SleepingBear to Tour ' + tour + ' Mission ' + mission);
       }
     }
+  } else if (lowermes.indexOf('has won the raffle!') != -1 && user.username == 'moobot') {
+    var match = getMatches(/(.*?) has won/gi, message);
+    var winner = match[0][1];
+    chat('Congratulations @' + winner + '!');
   }
 });
 
