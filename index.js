@@ -1,6 +1,7 @@
 var irc = require('tmi.js');
 var request = require('request');
 var sw = require('./steamweb.js')('7EDFF01931452753ABB0145CC12A3D49');
+var fs = require('fs');
 
 var channel = '#sleepingbear123';
 
@@ -76,6 +77,7 @@ client.on('chat', function(c, user, message, self) {
       } else {
         mission = m;
         chat('Seting SleepingBear to Tour ' + tour + ' Mission ' + mission);
+        tourMissionUpdated();
       }
     }
   } else if (lowermes.indexOf('has won the raffle!') != -1 && user.username == 'moobot') {
@@ -123,6 +125,7 @@ function getTour() {
           if (mission != 4) chat('SleepingBear has completed Tour ' + tour + ' Mission ' + mission  + '!');
           else chat('SleepingBear has completed Tour ' + tour + '!');
           mission++;
+          tourMissionUpdated();
         }
       }
     }
@@ -132,12 +135,25 @@ function getTour() {
       if (tour) {
         mission = 1;
         console.log('Got new tour level: ' + tour);
+        tourMissionUpdated();
       }
       tour = t;
     }
   });
 }
 
+function tourMissionUpdated() {
+  if (tour == 0 || mission == -1) return;
+  fs.writeFile('./tour', tour + ',' + mission);
+}
+
+var info = fs.existsSync('./tour') ? fs.readFileSync('./tour') : false;
+if (info) {
+  console.log(info.toString()); 
+  var split = info.toString().split(',');
+  tour = split[0];
+  mission = split[1];
+}
 getTour();
 setInterval(getTour, 1000*20);
 
