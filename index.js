@@ -4,7 +4,7 @@ var sw = require('./steamweb.js')('7EDFF01931452753ABB0145CC12A3D49');
 var fs = require('fs');
 var ssq = require('ssq');
 
-var channel = '#demipixel';
+var channel = '#sleepingbear123';
 
 var options = {
   options: {
