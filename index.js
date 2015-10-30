@@ -98,6 +98,19 @@ client.on('chat', function(c, user, message, self) {
     showIP = false;
     chat('!ip is now disabled.');
     saveSettings();
+  } else if (lowermes.indexOf('!songlisttime') == 0) {
+    request('http://api.twitch.moobot.tv/1/channel/songrequests/playlist?channel=sleepingbear123', function(err, http, body) {
+      var songs = JSON.parse(body);
+      var time = 0;
+      songs.forEach((song) => time += song.length);
+      var str = 'Length of all songs in song list: ';
+      if (time < 60*60) {
+        str += Math.floor(time/60) + ':' + (time % 60);
+      } else {
+        str += Math.floor(time/3600) + ':' + Math.floor((time % 3600)/60) + ':' + (time % 60);
+      }
+      chat(str);
+    })
   }
 });
 
