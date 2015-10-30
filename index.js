@@ -51,8 +51,8 @@ client.on('chat', function(c, user, message, self) {
 
   if (lowermes.indexOf('!demibot') == 0) {
     chat('Hey @' + user.username + ' !');
-  } else if (message.match(/#[^ #]{0,15}(demipixel|demi)[^ #]{0,15}/i) && !me) {
-    var match = getMatches(/#([^ #]{0,15}(demipixel|demi)[^ #]{0,15})/gi, message)
+  } else if (message.match(/#[^ #]*(demipixel|demi)[^ #]*/i) && !me) {
+    var match = getMatches(/#([^ #]*(demipixel|demi)[^ #]*)/gi, message)
     var str = '';
     for (var m = 0; m < match.length; m++) {
       str += '#' + match[m][1].replace(/(demipixel|demi)(bot)?/gi, user.username) + ' ';
