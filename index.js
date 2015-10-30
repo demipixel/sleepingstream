@@ -111,6 +111,12 @@ client.on('chat', function(c, user, message, self) {
       }
       chat(str);
     })
+  } else if (lowermes.indexOf('!souls') == 0) {
+    if (souls == 0) {
+      chat('Unknown number of souls');
+    } else {
+      chat('Sleeping Bear has ' + souls + ' souls!');
+    }
   }
 });
 
@@ -168,6 +174,7 @@ function getStringFromServer(server, data) {
 var tour = 0;
 var tickets = 0;
 var mission = -1;
+var souls = 0;
 
 function getTour() {
   sw.items(440, '76561198046453101', function(err, items) {
@@ -178,6 +185,9 @@ function getTour() {
     items = items.items;
     var ticks = items.filter((item) => item.defindex == '725').length;
     var t = items.filter((item) => item.defindex == '1066')[0].level;
+    var s = items.filter((item) => item.defindex == '5826')[0].attributes[0].value;
+    
+    if (s) souls = s;
 
     if (!tickets) {
       
