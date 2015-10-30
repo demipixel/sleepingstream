@@ -117,6 +117,8 @@ client.on('chat', function(c, user, message, self) {
     } else {
       chat('Sleeping Bear has ' + souls + ' souls!');
     }
+  } else if (lowermes.indexOf('!tickets') == 0) {
+    chat('Sleeping Bear has ' + tickets + ' tickets!');
   }
 });
 
