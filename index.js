@@ -117,6 +117,8 @@ client.on('chat', function(c, user, message, self) {
     } else {
       chat('Sleeping Bear has ' + souls + ' souls!');
     }
+  } else if (lowermes.indexOf('!url') == 0) {
+    chat('http://www.twitch.tv/sleepingbear123');
   }
 });
 
