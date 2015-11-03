@@ -110,7 +110,7 @@ client.on('chat', function(c, user, message, self) {
         str += Math.floor(time/3600) + ':' + Math.floor((time % 3600)/60) + ':' + (time % 60);
       }
       chat(str);
-    })
+    });
   } else if (lowermes.indexOf('!souls') == 0) {
     if (souls == 0) {
       chat('Unknown number of souls');
@@ -119,6 +119,41 @@ client.on('chat', function(c, user, message, self) {
     }
   } else if (lowermes.indexOf('!tickets') == 0) {
     chat('Sleeping Bear has ' + tickets + ' tickets!');
+  } else if (lowermes.indexOf('!timeuntil ') == 0) {
+    var songtext = message.replace('!timeuntil ', '').trim();
+    song = '';
+    if (songtext.indexOf('?v=') != -1) {
+      song = songtext.match(/.*?\?v=(.*?)(?:$|&)/);
+      console.log(song);
+      if (song) song = song[1];
+      else song = songtext.toLowerCase();
+    } else song = songtext.toLowerCase();
+    console.log('Song:',song);
+    console.log(songtext);
+    request('http://api.twitch.moobot.tv/1/channel/songrequests/playlist?channel=sleepingbear123', function(err, http, body) {
+      var songs = JSON.parse(body);
+      var waittime = 0;
+      for (var s = 0; s < songs.length; s++) {
+        console.log(songs[s].youtube_id);
+        if (songs[s].youtube_id == song || songs[s].title.toLowerCase().indexOf(song) != -1) {
+          var seconds = waittime % 60;
+          var minutes = Math.floor((waittime % 3600)/60);
+          var hours = Math.floor(waittime / 3600);
+          if (seconds < 10) seconds = '0' + seconds;
+          if (minutes < 10) minutes = '0' + minutes;
+
+          if (hours == 0) {
+            chat('There is ' + minutes + ':' + seconds + ' until "' + songs[s].title + '"');
+          } else {
+            chat('There is ' + hours + ':' + minutes + ':' + seconds + ' until "' + songs[s].title + '"');
+          }
+          return;
+        } else {
+          waittime += songs[s].length;
+        }
+      }
+      chat('Could not find that song!');
+    });
   }
 });
 
