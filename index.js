@@ -128,13 +128,10 @@ client.on('chat', function(c, user, message, self) {
     } else if (match = songtext.match(/.*?youtu.be\/(.*?)(?:$|&)/)) {
       song = match[1];
     } else song = songtext.toLowerCase();
-    console.log('Song:',song);
-    console.log(songtext);
     request('http://api.twitch.moobot.tv/1/channel/songrequests/playlist?channel=sleepingbear123', function(err, http, body) {
       var songs = JSON.parse(body);
       var waittime = 0;
       for (var s = 0; s < songs.length; s++) {
-        console.log(songs[s].youtube_id);
         if (songs[s].youtube_id == song || songs[s].title.toLowerCase().indexOf(song) != -1) {
           var seconds = waittime % 60;
           var minutes = Math.floor((waittime % 3600)/60);
