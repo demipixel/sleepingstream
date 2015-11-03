@@ -122,11 +122,11 @@ client.on('chat', function(c, user, message, self) {
   } else if (lowermes.indexOf('!timeuntil ') == 0) {
     var songtext = message.replace('!timeuntil ', '').trim();
     song = '';
-    if (songtext.indexOf('?v=') != -1) {
-      song = songtext.match(/.*?\?v=(.*?)(?:$|&)/);
-      console.log(song);
-      if (song) song = song[1];
-      else song = songtext.toLowerCase();
+    var match;
+    if (match = songtext.match(/.*?\?v=(.*?)(?:$|&)/)) {
+      song = match[1];
+    } else if (match = songtext.match(/.*?youtu.be\/(.*?)(?:$|&)/)) {
+      song = match[1];
     } else song = songtext.toLowerCase();
     console.log('Song:',song);
     console.log(songtext);
