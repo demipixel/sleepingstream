@@ -101,7 +101,7 @@ client.on('chat', function(c, user, message, self) {
         saveSettings();
       }
     }
-  } else if (lowermes.indexOf('has won the raffle!') != -1 && user.username == 'moobot') {
+  } else if (lowermes.indexOf('has won the raffle!') != -1 && user.username.toLowerCase() == 'moobot') {
     var match = getMatches(/(.*?) has won/gi, message);
     var winner = match[0][1];
     chat('Congratulations @' + winner + '!');
