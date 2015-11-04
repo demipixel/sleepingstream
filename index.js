@@ -120,12 +120,18 @@ client.on('chat', function(c, user, message, self) {
     request('http://api.twitch.moobot.tv/1/channel/songrequests/playlist?channel=sleepingbear123', function(err, http, body) {
       var songs = JSON.parse(body);
       var time = 0;
+      var seconds = time % 60;
+      var minutes = Math.floor((time % 3600)/60);
+      var hours = Math.floor(time / 3600);
+      if (seconds < 10) seconds = '0' + seconds;
+      if (minutes < 10) minutes = '0' + minutes;
+
       songs.forEach((song) => time += song.length);
       var str = 'Length of all songs in song list: ';
       if (time < 60*60) {
-        str += Math.floor(time/60) + ':' + (time % 60);
+        str += minutes + ':' + seconds;
       } else {
-        str += Math.floor(time/3600) + ':' + Math.floor((time % 3600)/60) + ':' + (time % 60);
+        str += hours + ':' + minutes + ':' + seconds;
       }
       chat(str);
     });
