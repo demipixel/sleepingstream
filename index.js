@@ -177,6 +177,9 @@ client.on('chat', function(c, user, message, self) {
     });
   } else if (lowermes.indexOf('!500') == 0) {
     chat('!songrequest 500 miles');
+  } else if (lowermes.indexOf('!duck') == 0) {
+    if (user.username.toLowerCase() == 'faayyuul') chat('QUACK!!!');
+    else chat('No');
   }
 });
 
