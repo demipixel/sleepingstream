@@ -175,6 +175,8 @@ client.on('chat', function(c, user, message, self) {
       }
       chat('Could not find that song!');
     });
+  } else if (lowermes.indexOf('!500') == 0) {
+    chat('!songrequest 500 miles');
   }
 });
 
