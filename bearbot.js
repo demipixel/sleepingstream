@@ -60,7 +60,7 @@ client.on('chat', function(c, user, message, self) {
 
   if (lowermes.indexOf('!bearbot') == 0) {
     chat('Hey @' + user.username + ' !');
-  } else if (lowermes.indexOf('!500time') {
+  } else if (lowermes.indexOf('!500time')) {
     chat('!timeuntil 500 miles');
   });
 });
