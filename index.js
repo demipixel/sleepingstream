@@ -176,7 +176,7 @@ client.on('chat', function(c, user, message, self) {
       }
       chat('Could not find that song!');
     });
-  } else if (lowermes.indexOf('!500') == 0) {
+  } else if (lowermes == '!500') {
     chat('!songrequest 500 miles');
   } else if (lowermes.indexOf('!duck') == 0) {
     if (user.username.toLowerCase() == 'faayyuul') chat('QUACK!!!');
