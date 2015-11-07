@@ -62,7 +62,7 @@ client.on('chat', function(c, user, message, self) {
     chat('Hey @' + user.username + ' !');
   } else if (lowermes.indexOf('!500time')) {
     chat('!timeuntil 500 miles');
-  });
+  };
 });
 
 whisperclient.on('whisper', function(user, message) {
