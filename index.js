@@ -8,7 +8,6 @@ var ircs = ['#sleepingbear123', '#manofsnow'];
 var channels = ['sleepingbear123', 'manofsnow']
 var nicknames = ['Sleeping Bear', 'Snow'];
 var steamids = ['76561198046453101', '76561198005475714'];
-var ipCommand = [true, false];
 var data = {};
 
 var options = {
@@ -113,7 +112,7 @@ client.on('chat', function(c, user, message, self) {
     var match = getMatches(/(.*?) has won/gi, message);
     var winner = match[0][1];
     chat(c,'Congratulations @' + winner + '!');
-  } else if (lowermes.indexOf('!ip') == 0 && ipCommand[channelId]) {
+  } else if (lowermes.indexOf('!ip') == 0) {
     if (data[id].showIP) chatIP(c, id, nickname);
     else chat(c,'!ip is currently disabled.')
   } else if (lowermes.indexOf('!showip') == 0 && isAdmin(user)) {
