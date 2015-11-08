@@ -35,8 +35,7 @@ var whisperoptions = {
 }
 
 function chat(channel, msg) {
-  //client.say(channel, msg);
-  console.log(channel,msg)
+  client.say(channel, msg);
 }
 
 function whisper(user, msg) {
