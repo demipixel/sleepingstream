@@ -4,10 +4,10 @@ var sw = require('./steamweb.js')('7EDFF01931452753ABB0145CC12A3D49');
 var fs = require('fs');
 var ssq = require('ssq');
 
-var ircs = ['#sleepingbear123', '#manofsnow'];
-var channels = ['sleepingbear123', 'manofsnow']
-var nicknames = ['Sleeping Bear', 'Snow'];
-var steamids = ['76561198046453101', '76561198005475714'];
+var ircs = ['#sleepingbear123', '#manofsnow', '#funkepills'];
+var channels = ['sleepingbear123', 'manofsnow', 'funkepills']
+var nicknames = ['Sleeping Bear', 'Snow', 'FUNKe'];
+var steamids = ['76561198046453101', '76561198005475714', '76561198044193282'];
 var data = {};
 
 var options = {
