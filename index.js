@@ -186,7 +186,7 @@ client.on('chat', function(c, user, message, self) {
   } else if (lowermes == '!500') {
     chat(c,'!songrequest https://www.youtube.com/watch?v=84CPo4bVkMk');
   } else if (lowermes.indexOf('!duck') == 0) {
-    if (user.username.toLowerCase() == 'faayyuul') chat('QUACK!!!');
+    if (user.username.toLowerCase() == 'faayyuul') chat(c,'QUACK!!!');
     else chat(c,'No');
   }
 });
