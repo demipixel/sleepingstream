@@ -203,7 +203,7 @@ whisperclient.on('whisper', function(user, message) {
   } else if (message.indexOf('saymode ' == 0) && isAdmin(username)) {
     var channel = message.replace('saymode ', '');
     var num = channels.indexOf(channel);
-    if (!num) {
+    if (!num && num !== 0) {
       whisper(user, 'Cannot find demibot channel "' + channel + '"');
     } else {
       whisper(user, 'Setting saymode to "' + channel + '"');
