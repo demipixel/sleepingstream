@@ -17,7 +17,7 @@ var options = {
   },
   identity: {
     username: 'sleepingbearbot',
-    password:'oauth:ldtpa73rkof7wk8rs0jbtmj8wj5vie'
+    password:'oauth:'
   },
   channels: [channel]
 };
