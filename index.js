@@ -150,7 +150,7 @@ client.on('chat', function(c, user, message, self) {
       chat(c, nickname + ' has ' + data[id].souls + ' souls!');
     }
   } else if (lowermes.indexOf('!tickets') == 0) {
-    chat(c, nickname + ' has ' + tickets + ' tickets!');
+    chat(c, nickname + ' has ' + data[id].tickets + ' tickets!');
   } else if (lowermes.indexOf('!timeuntil ') == 0) {
     var songtext = message.replace('!timeuntil ', '').trim();
     song = '';
