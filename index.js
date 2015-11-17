@@ -10,6 +10,8 @@ var nicknames = ['Sleeping Bear', 'Snow', 'FUNKe'];
 var steamids = ['76561198046453101', '76561198005475714', '76561198044193282'];
 var data = {};
 
+var saymode = -1;
+
 var options = {
   options: {
     debug: true
@@ -193,8 +195,20 @@ client.on('chat', function(c, user, message, self) {
 
 whisperclient.on('whisper', function(user, message) {
   var username = user.toLowerCase();
-  if (message.indexOf('say ') != -1 && isAdmin(username)) {
-    chat(c,message.replace('say ', ''));
+  if (message.indexOf('say ') == 0 && isAdmin(username)) {
+    if (saymode == -1) whisper(user, 'Use: saymode <channel_name>');
+    else {
+      chat(ircs[saymode],message.replace('say ', ''));
+    }
+  } else if (message.indexOf('saymode ' == 0) && isAdmin(username)) {
+    var channel = message.replace('saymode ', '');
+    var num = channels.indexOf(channel);
+    if (!num) {
+      whisper(user, 'Cannot find demibot channel "' + channel + '"');
+    } else {
+      whisper(user, 'Setting saymode to "' + channel + '"');
+      saymode = num;
+    }
   }
 });
 
