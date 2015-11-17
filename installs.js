@@ -13,7 +13,7 @@ var options = {
   },
   identity: {
     username: 'demibotxel',
-    password:'oauth:glxfqfv0dg990c0qpw0elhpb3k5ofr'
+    password:'oauth:'
   },
   channels: [channel]
 };
