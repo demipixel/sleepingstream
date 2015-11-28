@@ -1,7 +1,7 @@
 var irc = require('tmi.js');
 var request = require('request');
 var fs = require('fs');
-var sw = require('./steamweb.js')(fs.readFileSync('./swpass', 'utf8'));
+var sw = require('./steamweb.js')(fs.readFileSync('./swpass', 'utf8').trim());
 var ssq = require('ssq');
 
 var ircs = ['#sleepingbear123', '#manofsnow', '#funkepills'];
@@ -22,7 +22,7 @@ var options = {
   },
   identity: {
     username: 'demibotxel',
-    password: fs.readFileSync('./twitchauth', 'utf8')
+    password: fs.readFileSync('./twitchauth', 'utf8').trim()
   },
   channels: ircs
 };
