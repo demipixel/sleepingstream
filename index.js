@@ -110,7 +110,7 @@ client.on('chat', function(c, user, message, self) {
         saveSettings();
       }
     }
-  } else if (lowermes.indexOf('has won the raffle!') != -1) {
+  } else if (lowermes.indexOf('has won the raffle!') != -1 && isAdmin(user)) {
     var match = getMatches(/(.*?) has won/gi, message);
     var winner = match[0][1];
     chat(c,'Congratulations @' + winner + '!');
@@ -214,7 +214,7 @@ whisperclient.on('whisper', function(user, message) {
 
 function isAdmin(user) {
   user = typeof user == 'object' ? user.username : user;
-  return (user == 'demipixel' || user == 'sleepingbear123' || user == 'manofsnow');
+  return (user == 'demipixel' || user == 'sleepingbear123' || user == 'manofsnow' || user == 'moobot';
 }
 
 function chatIP(c, id, nick) {
