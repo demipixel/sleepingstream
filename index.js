@@ -4,10 +4,10 @@ var fs = require('fs');
 var sw = require('./steamweb.js')(fs.readFileSync('./swpass', 'utf8').trim());
 var ssq = require('ssq');
 
-var ircs = ['#sleepingbear123', '#manofsnow', '#funkepills'];
-var channels = ['sleepingbear123', 'manofsnow', 'funkepills']
-var nicknames = ['Sleeping Bear', 'Snow', 'FUNKe'];
-var steamids = ['76561198046453101', '76561198005475714', '76561198044193282'];
+var ircs = ['#sleepingbear123', '#funkepills'];
+var channels = ['sleepingbear123', 'funkepills']
+var nicknames = ['Sleeping Bear', 'FUNKe'];
+var steamids = ['76561198046453101', '76561198044193282'];
 var data = {};
 
 var saymode = -1;
@@ -110,7 +110,7 @@ client.on('chat', function(c, user, message, self) {
         saveSettings();
       }
     }
-  } else if (lowermes.indexOf('has won the raffle!') != -1) {
+  } else if (lowermes.indexOf('has won the raffle!') != -1 && isAdmin(user)) {
     var match = getMatches(/(.*?) has won/gi, message);
     var winner = match[0][1];
     chat(c,'Congratulations @' + winner + '!');
@@ -214,7 +214,7 @@ whisperclient.on('whisper', function(user, message) {
 
 function isAdmin(user) {
   user = typeof user == 'object' ? user.username : user;
-  return (user == 'demipixel' || user == 'sleepingbear123' || user == 'manofsnow');
+  return (user == 'demipixel' || user == 'sleepingbear123' || user == 'moobot');
 }
 
 function chatIP(c, id, nick) {
