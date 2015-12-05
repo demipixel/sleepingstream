@@ -291,8 +291,9 @@ function getTour(c, id, nickname) {
   });
 }
 
-function saveSettings() {
-  fs.writeFile('./tour', JSON.stringify(data));
+function saveSettings(func) {
+  func = func || () => {};
+  fs.writeFile('./tour', JSON.stringify(data), func);
 }
 
 function tourInterval(channel, steamid, nickname) {
@@ -320,6 +321,8 @@ for (var channel of channels) {
       tickets: 0,
       showIP: true
     }
+  } else {
+    console.log('Loaded data',data);
   }
 
   tourInterval(channel, steamid, nickname)
@@ -336,6 +339,15 @@ function getMatches(re, s) {
   } while (m);
   return done;
 }
+
+process.on('SIGINT', function() {
+  console.log('Saving');
+  saveSettings(() => {
+    console.log('Saved');
+    console.log('');
+    process.exit();
+  });
+});
 
 client.connect();
 whisperclient.connect();
