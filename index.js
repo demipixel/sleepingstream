@@ -200,7 +200,7 @@ whisperclient.on('whisper', function(user, message) {
     else {
       chat(ircs[saymode],message.replace('say ', ''));
     }
-  } else if (message.indexOf('saymode ' == 0) && isAdmin(username)) {
+  } else if (message.indexOf('saymode ') == 0 && isAdmin(username)) {
     var channel = message.replace('saymode ', '');
     var num = channels.indexOf(channel);
     if (!num && num !== 0) {
@@ -209,6 +209,8 @@ whisperclient.on('whisper', function(user, message) {
       whisper(user, 'Setting saymode to "' + channel + '"');
       saymode = num;
     }
+  } else {
+    whisper(user, 'Invalid command');
   }
 });
 
