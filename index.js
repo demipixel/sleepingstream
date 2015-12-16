@@ -296,6 +296,15 @@ function saveSettings(func) {
   fs.writeFile('./tour', JSON.stringify(data), func);
 }
 
+function createInterval(c, text, time) {
+  setTimeout(() => {
+    chat(c, text);
+  }, 4*1000);
+  setInterval(() => {
+    chat(c, text);
+  }, time);
+}
+
 function tourInterval(channel, steamid, nickname) {
   setInterval(function() {
     getTour(channel, steamid, nickname);
@@ -351,3 +360,5 @@ process.on('SIGINT', function() {
 
 client.connect();
 whisperclient.connect();
+
+createInterval('#sleepingbear123', 'Join Sleeping Bear\'s Raffle! Type !xmas for more info!', 1000*60*15);
