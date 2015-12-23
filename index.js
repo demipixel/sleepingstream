@@ -363,4 +363,4 @@ process.on('SIGINT', function() {
 client.connect();
 whisperclient.connect();
 
-createInterval('#sleepingbear123', 'Join Sleeping Bear\'s Raffle! Type !xmas for more info!', 1000*60*15);
+// createInterval('#sleepingbear123', 'Join Sleeping Bear\'s Raffle! Type !xmas for more info!', 1000*60*15);
