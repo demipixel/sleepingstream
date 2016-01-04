@@ -163,7 +163,11 @@ client.on('chat', function(c, user, message, self) {
       song = match[1];
     } else song = songtext.toLowerCase();
     request('http://api.twitch.moobot.tv/1/channel/songrequests/playlist?channel='+channel, function(err, http, body) {
-      var songs = JSON.parse(body);
+      try {
+        var songs = JSON.parse(body);
+      } catch(err) {
+        chat(c, 'Uuuuuhh... Got some error trying to load the song list...');
+      }
       var waittime = 0;
       for (var s = 0; s < songs.length; s++) {
         if (songs[s].youtube_id == song || songs[s].title.toLowerCase().indexOf(song) != -1) {
