@@ -191,6 +191,8 @@ client.on('chat', function(c, user, message, self) {
     });
   } else if (lowermes == '!500') {
     chat(c,'!songrequest https://www.youtube.com/watch?v=XZ4Ib-7fJqY');
+  } else if (lowermes == '!hooked') {
+    chat(c, '!songrequest hooked on a feeling');
   } else if (lowermes.indexOf('!duck') == 0) {
     if (user.username.toLowerCase() == 'faayyuul') chat(c,'QUACK!!!');
     else chat(c,'No');
