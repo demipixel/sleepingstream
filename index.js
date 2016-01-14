@@ -206,7 +206,7 @@ client.on('chat', function(c, user, message, self) {
     if (user == 'sleepingbear123') chat(c, 'Joke #3: Bears.');
     else {
       var ind = Math.floor(Math.random() * BEAR_FACTS.length);
-      chat(c, 'Bear Fact #'+ind+': '+BEAR_FACTS[ind]);
+      chat(c, 'Bear Fact #'+(ind+1)+': '+BEAR_FACTS[ind]);
     }
   }
 });
