@@ -10,6 +10,8 @@ var nicknames = ['Sleeping Bear', 'FUNKe'];
 var steamids = ['76561198046453101', '76561198044193282'];
 var data = {};
 
+var BEAR_FACTS = fs.readFileSync('./bearfacts.txt', 'utf8').trim().split('\n');
+
 var saymode = -1;
 
 var options = {
@@ -196,6 +198,16 @@ client.on('chat', function(c, user, message, self) {
   } else if (lowermes.indexOf('!duck') == 0) {
     if (user.username.toLowerCase() == 'faayyuul') chat(c,'QUACK!!!');
     else chat(c,'No');
+  } else if (lowermes == '!bearluck') {
+    var num = Math.floor(Math.random()*10) + 4;
+    if (Math.random() < 0.01) num = '1000000000';
+    chat(c, '+'+num+' Unluckiness XP')
+  } else if (lowermes.indexOf('!bearfact') == 0) {
+    if (user == 'sleepingbear123') chat(c, 'Joke #3: Bears.');
+    else {
+      var ind = Math.floor(Math.random() * BEAR_FACTS.length);
+      chat(c, 'Bear Fact #'+ind+': '+BEAR_FACTS[ind]);
+    }
   }
 });
 
