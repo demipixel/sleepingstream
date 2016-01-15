@@ -10,6 +10,8 @@ var nicknames = ['Sleeping Bear', 'FUNKe'];
 var steamids = ['76561198046453101', '76561198044193282'];
 var data = {};
 
+var messageCount = Array(ircs.length).map(i => []);
+
 var BEAR_FACTS = fs.readFileSync('./bearfacts.txt', 'utf8').trim().split('\n');
 
 var saymode = -1;
@@ -39,7 +41,14 @@ var whisperoptions = {
 }
 
 function chat(channel, msg) {
-  client.say(channel, msg);
+  var ind = ircs.indexOf(channel);
+  messageCount[ind] = messageCount[ind].filter(i => i > Date.now() - 30*1000);
+  console.log('Length',messageCount[ind].length);
+  if (messageCount[ind].length >= 19) console.log('CAN\'T SEND MESSAGE: '+msg);
+  else {
+    messageCount[ind].push(Date.now());
+    client.say(channel, msg);
+  }
 }
 
 function whisper(user, msg) {
