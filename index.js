@@ -10,7 +10,7 @@ var nicknames = ['Sleeping Bear', 'FUNKe'];
 var steamids = ['76561198046453101', '76561198044193282'];
 var data = {};
 
-var messageCount = Array(ircs.length).map(i => []);
+var messageCount = ircs.map(i => []);
 
 var BEAR_FACTS = fs.readFileSync('./bearfacts.txt', 'utf8').trim().split('\n');
 
