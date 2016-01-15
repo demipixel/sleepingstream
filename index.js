@@ -209,7 +209,7 @@ client.on('chat', function(c, user, message, self) {
   } else if (lowermes == '!bearluck') {
     var num = Math.floor(Math.random()*10) + 4;
     if (Math.random() < 0.001) num = '1000000000';
-    chat(c, '+'+num+' Unluckiness XP')
+    chat(c, '@'+user.username+': +'+num+' Unluckiness XP')
   } else if (lowermes.indexOf('!bearfact') == 0) {
     if (user == 'sleepingbear123') chat(c, 'Joke #3: Bears.');
     else {
