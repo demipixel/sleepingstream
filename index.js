@@ -45,7 +45,7 @@ function chat(channel, msg) {
   if (ind != -1) {
     messageCount[ind] = messageCount[ind].filter(i => i > Date.now() - 30*1000);
   } else console.log('Message from '+channel+'???');
-  if (messageCount[ind].length >= 19) console.log('CAN\'T SEND MESSAGE: '+msg);
+  if (ind != -1 && messageCount[ind].length >= 19) console.log('CAN\'T SEND MESSAGE: '+msg);
   else {
     messageCount[ind].push(Date.now());
     client.say(channel, msg);
