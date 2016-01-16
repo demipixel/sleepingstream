@@ -42,7 +42,9 @@ var whisperoptions = {
 
 function chat(channel, msg) {
   var ind = ircs.indexOf(channel);
-  messageCount[ind] = messageCount[ind].filter(i => i > Date.now() - 30*1000);
+  if (ind != -1) {
+    messageCount[ind] = messageCount[ind].filter(i => i > Date.now() - 30*1000);
+  } else console.log('Message from '+channel+'???');
   if (messageCount[ind].length >= 19) console.log('CAN\'T SEND MESSAGE: '+msg);
   else {
     messageCount[ind].push(Date.now());
