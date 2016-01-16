@@ -216,10 +216,6 @@ client.on('chat', function(c, user, message, self) {
       var ind = Math.floor(Math.random() * BEAR_FACTS.length);
       chat(c, 'Bear Fact #'+(ind+1)+': '+BEAR_FACTS[ind]);
     }
-  } else if (lowermes.indexOf('!cat') == 0) {
-    var num = Math.floor(Math.random()*20) + 4;
-    if (Math.random() < 0.001) num = '1000000000';
-    chat(c, '@'+user.username+': +'+num+' Cat XP')
   }
 });
 
