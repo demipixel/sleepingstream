@@ -47,7 +47,7 @@ function chat(channel, msg) {
   } else console.log('Message from '+channel+'???');
   if (ind != -1 && messageCount[ind].length >= 19) console.log('CAN\'T SEND MESSAGE: '+msg);
   else {
-    messageCount[ind].push(Date.now());
+    if (ind != -1) messageCount[ind].push(Date.now());
     client.say(channel, msg);
   }
 }
