@@ -213,7 +213,7 @@ client.on('chat', function(c, user, message, self) {
     if (Math.random() < 0.01) num = '1000000000';
     chat(c, '@'+user.username+': +'+num+' Unluckiness XP')
   } else if (lowermes.indexOf('!bearfact') == 0) {
-    if (user == 'sleepingbear123') chat(c, 'Joke #3: Bears.');
+    if (user.username.toLowerCase() == 'sleepingbear123') chat(c, 'Joke #3: Bears.');
     else {
       var ind = Math.floor(Math.random() * BEAR_FACTS.length);
       chat(c, 'Bear Fact #'+(ind+1)+': '+BEAR_FACTS[ind]);
