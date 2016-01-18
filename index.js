@@ -208,7 +208,7 @@ client.on('chat', function(c, user, message, self) {
   } else if (lowermes.indexOf('!duck') == 0) {
     if (user.username.toLowerCase() == 'faayyuul') chat(c,'QUACK!!!');
     else chat(c,'No');
-  } else if (lowermes == '!bearluck') {
+  } else if (lowermes.indexOf('!bearluck') == 0) {
     var num = Math.floor(Math.random()*10) + 4;
     if (Math.random() < 0.01) num = '1000000000';
     chat(c, '@'+user.username+': +'+num+' Unluckiness XP')
