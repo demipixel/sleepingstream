@@ -249,10 +249,10 @@ function isAdmin(user) {
 
 function chatIP(c, id, nick) {
   sw.summary(id, function(err, players) {
-    var server = players.players[0].gameserverip;
-    if (!server) {
+    if (!players || !players.players[0] || !players.players[0].gameserverip) {
       chat(c,getStringFromServer(null,null,nick));
     } else {
+      var server = players.players[0].gameserverip;
       var serverSplit = server.split(':');
       var ip = serverSplit[0];
       var port = serverSplit[1];
