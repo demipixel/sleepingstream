@@ -218,6 +218,9 @@ client.on('chat', function(c, user, message, self) {
       var ind = Math.floor(Math.random() * BEAR_FACTS.length);
       chat(c, 'Bear Fact #'+(ind+1)+': '+BEAR_FACTS[ind]);
     }
+  } else if (lowermes.indexOf('!<3') == 0) {
+    if (user.username.toLowerCase() == 'cutenfuzzy21') chat(c, 'No.');
+    else chat(c, '<3 <3 <3 <3 <3 <3 <3 <3');
   }
 });
 
