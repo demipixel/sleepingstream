@@ -4,10 +4,10 @@ var fs = require('fs');
 var sw = require('./steamweb.js')(fs.readFileSync('./swpass', 'utf8').trim());
 var ssq = require('ssq');
 
-var ircs = ['#sleepingbear123', '#funkepills'];
-var channels = ['sleepingbear123', 'funkepills']
-var nicknames = ['Sleeping Bear', 'FUNKe'];
-var steamids = ['76561198046453101', '76561198044193282'];
+var ircs = ['#sleepingbear123', '#funkepills', '#pandapillowpet'];
+var channels = ['sleepingbear123', 'funkepills', 'pandapillowpet']
+var nicknames = ['Sleeping Bear', 'FUNKe', 'Panda'];
+var steamids = ['76561198046453101', '76561198044193282', '76561198084181154'];
 var data = {};
 
 var messageCount = ircs.map(i => []);
