@@ -221,6 +221,8 @@ client.on('chat', function(c, user, message, self) {
   } else if (lowermes.indexOf('!<3') == 0) {
     if (user.username.toLowerCase() == 'cutenfuzzy21') chat(c, 'No.');
     else chat(c, '<3 <3 <3 <3 <3 <3 <3 <3');
+  } else if (lowermes == 'opieop') {
+    chat(c, 'OpieOP +');
   }
 });
 
