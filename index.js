@@ -293,8 +293,11 @@ function getTour(c, id, nickname) {
     }
     items = items.items;
     var ticks = items.filter((item) => item.defindex == '725').length;
-    var t = items.filter((item) => item.defindex == '1066')[0].level;
-    var s = items.filter((item) => item.defindex == '5826')[0].attributes[0].value;
+    var t = items.filter((item) => item.defindex == '1066')[0];
+    if (t) t = t.level;
+    var s = items.filter((item) => item.defindex == '5826')[0];
+    if (s) s = s.attributes[0];
+    if (s) s = s.value;
     
     if (s) data[id].souls = s;
 
