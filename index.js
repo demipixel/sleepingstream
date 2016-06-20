@@ -330,7 +330,7 @@ function getTour(c, id, nickname) {
 }
 
 function saveSettings(func) {
-  func = func || () => {};
+  func = func || (() => {});
   fs.writeFile('./tour', JSON.stringify(data), func);
 }
 
